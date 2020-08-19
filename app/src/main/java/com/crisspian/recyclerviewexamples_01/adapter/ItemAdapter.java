@@ -63,19 +63,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(mBinding.getRoot());
             mtextview = mBinding.tvItem;
             mimagenview = mBinding.ivItem;
-            itemView.setOnClickListener(this);
+           // itemView.setOnClickListener(this);
 
         }
 
         @Override
-        public void onClick(View view) {
+   //     public void onClick(View view) {
           //  mListener.enviar(itemList.get(posi));
-        }
+     //   }
     }
 
     //se genera una interface para mostrar los datos, ella escucha y pasa los datos
 
-     public interface PassData{
-        void enviar(Item mitem);
-     }
+    // public interface PassData{
+    //    void enviar(Item mitem);
+   //  }
 }

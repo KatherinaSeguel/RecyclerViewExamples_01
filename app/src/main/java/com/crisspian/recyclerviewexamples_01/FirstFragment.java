@@ -39,7 +39,7 @@ public class FirstFragment extends Fragment {
         Log.d("TAG",String.valueOf(returnItemList()));
         mbinding = FragmentFirstBinding.inflate(inflater,container,false);
         mRecycle=mbinding.rvItem;
-        mItemAdapter= new ItemAdapter(returnItemList());
+        mItemAdapter= new ItemAdapter(return List);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycle.setAdapter(mItemAdapter);
 
