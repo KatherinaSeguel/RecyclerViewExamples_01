@@ -1,6 +1,7 @@
 package com.crisspian.recyclerviewexamples_01;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,24 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.crisspian.recyclerviewexamples_01.adapter.ItemAdapter;
+import com.crisspian.recyclerviewexamples_01.databinding.FragmentFirstBinding;
 import com.crisspian.recyclerviewexamples_01.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class FirstFragment extends Fragment {
+    private RecyclerView mRecycle;
+    private ItemAdapter mItemAdapter;
+
+  //se busca com Binding y aparece Fragmennt.......
+    private FragmentFirstBinding mbinding;
 
     @Override
     public View onCreateView(
@@ -23,7 +35,16 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+
+        Log.d("TAG",String.valueOf(returnItemList()));
+        mbinding = FragmentFirstBinding.inflate(inflater,container,false);
+        mRecycle=mbinding.rvItem;
+        mItemAdapter= new ItemAdapter(returnItemList());
+        mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecycle.setAdapter(mItemAdapter);
+
+         //elimino lo que traia el return y coloco mi variable
+        return mbinding.getRoot()
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
