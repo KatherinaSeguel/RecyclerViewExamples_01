@@ -44,7 +44,7 @@ public class FirstFragment extends Fragment {
         mRecycle.setAdapter(mItemAdapter);
 
          //elimino lo que traia el return y coloco mi variable
-        return mbinding.getRoot()
+        return mbinding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

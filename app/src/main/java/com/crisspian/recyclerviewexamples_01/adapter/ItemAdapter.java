@@ -17,21 +17,22 @@ import com.crisspian.recyclerviewexamples_01.model.Item;
 
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder>{
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
     private List<Item> itemList;
-    private elementoseleccionado mListener;
+    private PassData mListener;//la interface
 
 
-    public ItemAdapter(List<Item> itemList) {
+    public ItemAdapter(List<Item> itemList,PassData mlistdos) {
         this.itemList = itemList;
+        this.mListener=mlistdos;
     }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        ItemListDataBinding mBinding = ItemListDataBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        ItemListDataBinding mBinding = ItemListDataBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
         return new ItemViewHolder(mBinding);
     }
@@ -52,33 +53,29 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
 
     //CLASE VIEWHOLDER
-    public class ItemViewHolder extends RecyclerView.ViewHolder  {
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
-            private ImageView mimagenview;
-            private TextView mtextview;
+        private ImageView mimagenview;
+        private TextView mtextview;
 
-                //lleno el constructor y lo implemento
-            public ItemViewHolder(@NonNull ItemListDataBinding mBinding) {
-                super(mBinding.getRoot());
-                mtextview = mBinding.tvItem;
-                mimagenview=mBinding.ivItem;
-                itemView.setOnClickListener(this);
+        //lleno el constructor y lo implemento
+        public ItemViewHolder(@NonNull ItemListDataBinding mBinding) {
+            super(mBinding.getRoot());
+            mtextview = mBinding.tvItem;
+            mimagenview = mBinding.ivItem;
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View view) {
+          //  mListener.enviar(itemList.get(posi));
+        }
     }
 
+    //se genera una interface para mostrar los datos, ella escucha y pasa los datos
 
-
-     //  @Override
-     //  public void onClick(View view) {
-     //     int position =getLayoutPosition();
-     //     ImageView eleimagen = itemList.get(position);
-      //    String eletext= itemList.get(position);
-      //  }
-   // }
-
-    //se genera una interface para mostrar la palabra
-
-   // public interface elementoseleccionado{
-   //     void passElement(Image mimagen , String mtext)
-   // }
+     public interface PassData{
+        void enviar(Item mitem);
+     }
 }
