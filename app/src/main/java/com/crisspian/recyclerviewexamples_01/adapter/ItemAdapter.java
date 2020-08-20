@@ -20,12 +20,12 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
     private List<Item> itemList;
-    private PassData mListener;//la interface
+    //private PassData mListener;//la interface
 
 
-    public ItemAdapter(List<Item> itemList,PassData mlistdos) {
+    public ItemAdapter(List<Item> itemList, PassData mlistdos) {
         this.itemList = itemList;
-        this.mListener=mlistdos;
+       // this.mListener = mlistdos;
     }
 
     @NonNull
@@ -53,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
 
     //CLASE VIEWHOLDER
-    public class ItemViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mimagenview;
         private TextView mtextview;
@@ -63,19 +63,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(mBinding.getRoot());
             mtextview = mBinding.tvItem;
             mimagenview = mBinding.ivItem;
-           // itemView.setOnClickListener(this);
+            // itemView.setOnClickListener(this);
 
         }
 
         @Override
-   //     public void onClick(View view) {
-          //  mListener.enviar(itemList.get(posi));
-     //   }
+        //     public void onClick(View view) {
+          ;
+           }
+         }
+
+        //se genera una interface para mostrar los datos, ella escucha y pasa los datos
+
+         public interface PassData{
+            void enviar(Item mitem);
+          }
     }
-
-    //se genera una interface para mostrar los datos, ella escucha y pasa los datos
-
-    // public interface PassData{
-    //    void enviar(Item mitem);
-   //  }
 }
