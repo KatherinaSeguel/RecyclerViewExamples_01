@@ -21,11 +21,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private List<Item> itemList;
     //private PassData mListener;//la interface
+    private PassData mlistener;//mlistener pasa los datos y se añade al constructor
 
 
-    public ItemAdapter(List<Item> itemList, PassData mlistdos) {
+    public ItemAdapter(List<Item> itemList, PassData mlistener) {
         this.itemList = itemList;
-       // this.mListener = mlistdos;
+        this.mlistener = mlistener;
     }
 
     @NonNull
@@ -63,20 +64,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(mBinding.getRoot());
             mtextview = mBinding.tvItem;
             mimagenview = mBinding.ivItem;
-            // itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
         }
 
         @Override
-        //     public void onClick(View view) {
-          ;
-           }
-         }
+        public void onClick(View view) {
+          mlistener.passelement(itemList.get(getAdapterPosition()));
+        }
+    }
 
         //se genera una interface para mostrar los datos, ella escucha y pasa los datos
 
          public interface PassData{
-            void enviar(Item mitem);
+            void passelement(Item mitem);//clase Item mitem variable
+
           }
-    }
 }

@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +24,7 @@ import java.util.List;
 
 
 
-public class FirstFragment extends Fragment {
+public class FirstFragment extends Fragment implements ItemAdapter.PassData {
     private RecyclerView mRecycle;
     private ItemAdapter mItemAdapter;
 
@@ -39,7 +41,9 @@ public class FirstFragment extends Fragment {
         Log.d("TAG",String.valueOf(returnItemList()));
         mbinding = FragmentFirstBinding.inflate(inflater,container,false);
         mRecycle=mbinding.rvItem;
-        mItemAdapter= new ItemAdapter(return List);
+        //finalmente se agrega ,this por cambiar el constructor
+
+        mItemAdapter= new ItemAdapter(returnItemList(),this);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycle.setAdapter(mItemAdapter);
 
@@ -83,4 +87,18 @@ public class FirstFragment extends Fragment {
         listItem.add(item12);
         return listItem;
     }
+
+    @Override
+    public void passelement(Item mitem) {
+        Toast.makeText(getContext(),mitem.getUrlImage(),Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    // public void enviar (Item item){
+    //  Toast.makeText(getConte)
+         //       Bundlene
+    //      mbin
+   // Navigation.findNavController(mBinding.getRoot())
+   // }
 }
